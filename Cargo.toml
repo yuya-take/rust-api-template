@@ -1,0 +1,70 @@
+[workspace]
+members = [ "agent_adapter","agent_app", "agent_domain", "agent_server"]
+resolver = "2"
+
+[workspace.package]
+version = "1.0.0"
+description = "API For AI Agent"
+
+[workspace.dependencies]
+# サーバー構築
+axum = {version = "0.7.9", features = ["macros"]}
+mime = "0.3.17"
+tower = "0.5.1"
+tower-http = { version = "0.6.2", features = ["trace", "cors"] }
+
+# RDBとの接続
+sqlx = { version="0.8.2", features = ["postgres", "runtime-tokio-native-tls", "chrono"] }
+pgvector = { version="0.4.0", features = ["sqlx"]}
+
+# 非同期
+tokio = { version="1.42.0", features = ["full"] }
+
+# JSONとRustのシリアライズ・デシリアライズ
+serde = { version="1.0.215", features = ["derive"] }
+serde_json = "1.0.133"
+derive-new = "0.7.0"
+
+# 環境変数を扱う
+dotenv = "0.15.0"
+
+# ロギング関連クレート
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter"] }
+
+# 時間型を扱う
+chrono = { version="0.4.39", features = ["serde"] }
+
+# openapi関連クレート
+utoipa = { version = "5.2.0", features = ["axum_extras"]}
+utoipa-swagger-ui = { version = "8.0.3", features = ["axum"] }
+
+# エラー処理関連クレート
+thiserror = "2.0.6"
+anyhow = "1.0.94"
+validator = { version = "0.19.0", features = ["derive"] }
+
+# http関連クレート
+reqwest = { version = "0.12.9", features = ["json", "stream"] }
+
+# ストリーミングを扱うためのクレート
+futures = "0.3.17"
+
+# 非同期関連クレート
+async-stream = "0.3.6"
+async-trait = "0.1.83"
+
+# AWS関連クレート
+aws-sdk-dynamodb = "1.13.1"
+serde_dynamo = { version = "4.2.13", features = ["aws-sdk-dynamodb+1"] }
+aws-config = { version = "1", features = ["behavior-version-latest"] }
+aws-sdk-s3 = "1.14.0"
+
+# その他クレート
+itertools = "0.13.0"
+ulid = "1.0.0"
+bytes = "1.0.1"
+
+[workspace.metadata.release]
+tag-prefix = ""
+
